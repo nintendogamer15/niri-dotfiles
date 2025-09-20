@@ -1,0 +1,94 @@
+/* Catppuccin Mocha pill style — compact right side */
+@import "mocha.css";
+
+/* ===== General ===== */
+* {
+  font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+}
+
+window#waybar {
+  background: transparent;
+  color: @text;
+}
+
+/* Default pill look */
+.modules-left > widget > *,
+.modules-center > widget > *,
+.modules-right > widget > * {
+  margin: 3px 3px;
+  padding: 0 8px;
+  border-radius: 14px;
+  background: alpha(@surface0, 0.85);
+  border: 1px solid @surface1;
+  box-shadow: 0 2px 8px alpha(@crust, 0.35);
+}
+
+/* Make the right block extra compact & snug to the edge */
+.modules-right > widget > * {
+  margin: 1px 2px;     /* tighter spacing on the right */
+  padding: 0 6px;      /* slimmer pills on the right */
+}
+.modules-right { padding-right: 6px; }  /* nudges the cluster to the edge */
+
+/* Hover */
+.modules-left > widget > *:hover,
+.modules-center > widget > *:hover,
+.modules-right > widget > *:hover {
+  background: alpha(@surface1, 0.9);
+}
+
+/* Workspaces */
+#workspaces button {
+  background: alpha(@surface0, 0.7);
+  color: @subtext1;
+  border-radius: 12px;
+  margin: 0 3px;
+  padding: 0 9px;
+}
+#workspaces button.focused { background: alpha(@surface1, 0.9); color: @text; box-shadow: inset 0 -2px @lavender; }
+#workspaces button.urgent  { background: @red; color: @crust; }
+
+/* Accents */
+#pulseaudio { color: @mauve; }
+#network    { color: @peach; }
+#backlight  { color: @yellow; }
+#battery    { color: @green; }
+#clock      { color: @lavender; }
+#bluetooth  { color: @sapphire; }
+#cpu        { color: @teal; }
+#memory     { color: @sky; }
+#temperature{ color: @maroon; }
+#power-profiles-daemon { color: @yellow; }
+#tray       { color: @subtext0; }
+
+/* MPRIS centered widget styling */
+#mpris {
+  color: @mauve;
+  background: alpha(@surface1, 0.9);
+  border-color: @surface2;
+}
+
+/* Bluetooth connected state: deepen bg */
+#bluetooth.connected { background: alpha(@surface2, 0.9); }
+
+/* Battery states */
+#battery.charging, #battery.plugged { background: alpha(@surface2, 0.9); color: @green; }
+#battery.critical:not(.charging) {
+  background: @red; color: @crust;
+  animation: warnblink .6s steps(12) infinite alternate;
+}
+@keyframes warnblink { to { background: @peach; color: @crust; } }
+
+/* Custom power button — red pill */
+#custom-power { background: @red; color: @crust; }
+#custom-power:hover { background: shade(@red, 0.85); }
+
+/* MPD/media badge */
+#mpd, #custom-media { color: @pink; background: alpha(@surface1, 0.85); }
+#mpd.paused { color: @peach; }
+#mpd.stopped { color: @overlay1; }
+
+/* (keep idle_inhibitor styles in case you re-enable) */
+#idle_inhibitor { color: @subtext0; }
+#idle_inhibitor.activated { color: @yellow; background: alpha(@surface2, 0.8); }

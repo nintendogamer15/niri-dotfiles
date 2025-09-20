@@ -1,0 +1,33 @@
+# Ignore the ble.sh repository (too large, will be cloned during installation)
+configs/ble.sh/
+
+# Ignore any backup files
+*.bak
+*.backup
+*~
+
+# Ignore temporary files
+*.tmp
+*.temp
+
+# Ignore log files
+*.log
+
+# Ignore any compiled files
+*.o
+*.so
+*.a
+
+# Ignore editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore any cache directories
+.cache/
+__pycache__/
+
+# Ignore any OS-specific files
+.DS_Store
+Thumbs.db
