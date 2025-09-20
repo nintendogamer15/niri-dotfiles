@@ -75,6 +75,10 @@ PACMAN_PACKAGES=(
     "pavucontrol"
     "playerctl"
     "mpd"
+    "ttf-jetbrains-mono"
+    "ttf-nerd-fonts-symbols"
+    "ttf-nerd-fonts-symbols-common"
+    "ttf-nerd-fonts-symbols-mono"
 )
 
 # AUR packages

@@ -93,6 +93,8 @@ A complete dotfiles configuration for a niri-based Wayland setup with Catppuccin
 - pavucontrol (audio control)
 - playerctl (media control)
 - mpd (music player daemon)
+- ttf-jetbrains-mono (terminal and system font)
+- ttf-nerd-fonts-symbols* (waybar icons)
 
 ### AUR Packages
 - blesh-git
