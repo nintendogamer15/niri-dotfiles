@@ -86,6 +86,13 @@ A complete dotfiles configuration for a niri-based Wayland setup with Catppuccin
 - geany
 - git
 - base-devel
+- npm (for asar installation)
+- swaybg (wallpaper manager)
+- iwgtk (WiFi management)
+- blueman (Bluetooth management)
+- pavucontrol (audio control)
+- playerctl (media control)
+- mpd (music player daemon)
 
 ### AUR Packages
 - blesh-git
@@ -144,6 +151,9 @@ After running the installation script:
 │   └── spicetify/
 ├── scripts/                 # Utility scripts
 │   └── signal-theme.sh
+├── wallpapers/              # Wallpaper collection
+│   └── celeste.png
+├── .gitignore
 └── README.md
 ```
 

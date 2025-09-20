@@ -69,6 +69,12 @@ PACMAN_PACKAGES=(
     "git"
     "base-devel"
     "npm"
+    "swaybg"
+    "iwgtk"
+    "blueman"
+    "pavucontrol"
+    "playerctl"
+    "mpd"
 )
 
 # AUR packages
@@ -118,26 +124,35 @@ fi
 read -p "Install Steam? (y/N): " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo "Which Steam version do you want?"
-    echo "1) steam (native)"
-    echo "2) steam-native-runtime"
-    read -p "Choose (1-2): " -n 1 -r steam_choice
+    echo "Steam installation options:"
+    echo "1) Let me install it manually (recommended for NVIDIA users)"
+    echo "2) Install standard steam package"
+    echo "3) Install steam-native-runtime"
+    read -p "Choose (1-3): " -n 1 -r steam_choice
     echo
     case $steam_choice in
         1)
-            log_info "Installing Steam (native)..."
-            sudo pacman -S --noconfirm steam
+            log_info "Manual Steam installation selected"
+            log_info "Please run: sudo pacman -S steam"
+            log_info "This will show you all available options including NVIDIA-specific versions"
+            log_warning "After installation, Steam configuration will be preserved in your dotfiles"
             ;;
         2)
-            log_info "Installing Steam (native runtime)..."
+            log_info "Installing standard Steam..."
+            sudo pacman -S --noconfirm steam
+            log_success "Steam installed"
+            ;;
+        3)
+            log_info "Installing Steam with native runtime..."
             sudo pacman -S --noconfirm steam-native-runtime
+            log_success "Steam installed"
             ;;
         *)
-            log_info "Installing default Steam..."
+            log_info "Installing standard Steam..."
             sudo pacman -S --noconfirm steam
+            log_success "Steam installed"
             ;;
     esac
-    log_success "Steam installed"
 fi
 
 # Spotify with Spicetify
@@ -176,6 +191,11 @@ done
 log_info "Copying utility scripts..."
 cp scripts/signal-theme.sh ~/signal-theme.sh
 chmod +x ~/signal-theme.sh
+
+# Copy wallpapers
+log_info "Copying wallpapers..."
+mkdir -p ~/Pictures/Wallpapers
+cp wallpapers/* ~/Pictures/Wallpapers/ 2>/dev/null || log_warning "No wallpapers to copy"
 
 # Set up GTK theme
 log_info "Setting up GTK theme..."
