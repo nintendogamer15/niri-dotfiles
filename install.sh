@@ -110,20 +110,23 @@ done
 # Install AUR packages
 log_info "Installing AUR packages..."
 
-# Handle swaylock conflict first
-if pacman -Q swaylock &> /dev/null; then
-    log_info "Removing swaylock to avoid conflict with swaylock-effects-git..."
-    sudo pacman -R --noconfirm swaylock
-else
-    log_info "swaylock not found, proceeding with AUR package installation"
-fi
-
 for package in "${AUR_PACKAGES[@]}"; do
     if yay -Q "$package" &> /dev/null; then
         log_info "$package is already installed"
     else
         log_info "Installing $package from AUR..."
-        yay -S --noconfirm "$package"
+        # Special handling for swaylock-effects-git
+        if [[ "$package" == "swaylock-effects-git" ]]; then
+            # Remove conflicting swaylock if present
+            if pacman -Q swaylock &> /dev/null; then
+                log_info "Removing conflicting swaylock package..."
+                sudo pacman -R --noconfirm swaylock
+            fi
+            # Install with dependency resolution
+            yay -S --noconfirm --removemake "$package"
+        else
+            yay -S --noconfirm "$package"
+        fi
     fi
 done
 
@@ -238,7 +241,12 @@ log_success "ble.sh setup complete"
 log_info "Setting up oh-my-bash..."
 if [[ ! -d ~/.oh-my-bash ]]; then
     log_info "Installing oh-my-bash..."
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --unattended
+    # Clone oh-my-bash manually to avoid installer issues
+    git clone --depth=1 https://github.com/ohmybash/oh-my-bash.git ~/.oh-my-bash
+    # Create backup of existing .bashrc if it exists and isn't ours
+    if [[ -f ~/.bashrc ]] && ! grep -q "OSH=" ~/.bashrc; then
+        cp ~/.bashrc ~/.bashrc.pre-oh-my-bash
+    fi
     log_success "oh-my-bash installed"
 else
     log_info "oh-my-bash is already installed"
