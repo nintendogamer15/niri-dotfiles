@@ -92,7 +92,6 @@ A complete dotfiles configuration for a niri-based Wayland setup with Catppuccin
 - base-devel
 - npm (for asar installation)
 - swaybg (wallpaper manager)
-- iwgtk (WiFi management)
 - blueman (Bluetooth management)
 - pavucontrol (audio control)
 - playerctl (media control)
@@ -103,6 +102,7 @@ A complete dotfiles configuration for a niri-based Wayland setup with Catppuccin
 ### AUR Packages
 - blesh-git
 - catppuccin-gtk-theme-mocha
+- iwgtk (WiFi management)
 - swaylock-effects-git
 - wlogout
 - zen-browser-bin

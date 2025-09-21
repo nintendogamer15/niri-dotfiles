@@ -72,7 +72,6 @@ PACMAN_PACKAGES=(
     "base-devel"
     "npm"
     "swaybg"
-    "iwgtk"
     "blueman"
     "pavucontrol"
     "playerctl"
@@ -87,6 +86,7 @@ PACMAN_PACKAGES=(
 AUR_PACKAGES=(
     "blesh-git"
     "catppuccin-gtk-theme-mocha"
+    "iwgtk"
     "swaylock-effects-git"
     "wlogout"
     "zen-browser-bin"
