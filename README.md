@@ -8,7 +8,7 @@ A complete dotfiles configuration for a niri-based Wayland setup with Catppuccin
 
 - **Window Manager**: niri (Wayland compositor)
 - **Terminal**: Alacritty with Catppuccin Mocha theme
-- **Shell**: Bash with ble.sh (blesh-git)
+- **Shell**: Bash with ble.sh (blesh-git) and oh-my-bash
 - **Status Bar**: Waybar
 - **Launcher**: Fuzzel
 - **Notifications**: Mako
@@ -53,6 +53,7 @@ A complete dotfiles configuration for a niri-based Wayland setup with Catppuccin
    - Install all required packages from pacman and AUR
    - Copy configuration files to appropriate locations
    - Set up themes and apply configurations
+   - Install and configure oh-my-bash with powerline-wizard theme
    - Prompt for optional applications
 
 ## What's Included
@@ -61,7 +62,7 @@ A complete dotfiles configuration for a niri-based Wayland setup with Catppuccin
 - niri window manager configuration
 - Waybar status bar configuration
 - Alacritty terminal configuration
-- Bash configuration with ble.sh
+- Bash configuration with ble.sh and oh-my-bash
 - Fuzzel launcher configuration
 - Mako notification configuration
 - swaylock configuration

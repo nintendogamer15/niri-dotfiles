@@ -232,6 +232,16 @@ fi
 
 log_success "ble.sh setup complete"
 
+# Set up oh-my-bash
+log_info "Setting up oh-my-bash..."
+if [[ ! -d ~/.oh-my-bash ]]; then
+    log_info "Installing oh-my-bash..."
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" --unattended
+    log_success "oh-my-bash installed"
+else
+    log_info "oh-my-bash is already installed"
+fi
+
 # Install asar for Signal theming
 log_info "Installing asar for Signal Desktop theming..."
 sudo npm install -g @electron/asar
