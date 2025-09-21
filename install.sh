@@ -73,6 +73,8 @@ PACMAN_PACKAGES=(
     "npm"
     "swaybg"
     "iwd"
+    "bluez"
+    "bluez-utils"
     "blueman"
     "pavucontrol"
     "playerctl"
@@ -273,20 +275,30 @@ EOF
 
 log_success "iwd service configured and enabled"
 
+# Enable bluetooth service
+log_info "Enabling bluetooth service..."
+sudo systemctl enable bluetooth
+sudo systemctl start bluetooth
+log_success "Bluetooth service enabled"
+
 # Set up wallpaper with swaybg
 log_info "Setting up wallpaper..."
-if [[ -f ~/Pictures/Wallpapers/celeste.png ]]; then
-    # Add wallpaper to niri startup
-    if [[ -f ~/.config/niri/config.kdl ]]; then
-        # Add wallpaper spawn command to niri config if not already present
-        if ! grep -q "swaybg" ~/.config/niri/config.kdl; then
-            sed -i '/spawn-at-startup "waybar"/a spawn-at-startup "swaybg -m fill -i ~/Pictures/Wallpapers/celeste.png"' ~/.config/niri/config.kdl
-        fi
+# Copy wallpaper script
+cp scripts/set-wallpaper.sh ~/set-wallpaper.sh
+chmod +x ~/set-wallpaper.sh
+
+# Add wallpaper script to niri startup (spawn the script, not swaybg directly)
+if [[ -f ~/.config/niri/config.kdl ]]; then
+    # Add wallpaper script to niri startup if not already present
+    if ! grep -q "set-wallpaper.sh" ~/.config/niri/config.kdl; then
+        sed -i '/spawn-at-startup "waybar"/a spawn-at-startup "bash ~/set-wallpaper.sh"' ~/.config/niri/config.kdl
     fi
-    log_success "Wallpaper setup complete"
-else
-    log_warning "Wallpaper file not found, skipping wallpaper setup"
 fi
+
+# Run wallpaper script immediately
+bash ~/set-wallpaper.sh
+
+log_success "Wallpaper setup complete"
 
 # Set up LightDM configuration
 log_info "Configuring LightDM login manager..."

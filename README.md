@@ -99,6 +99,8 @@ A complete dotfiles configuration for a niri-based Wayland setup with Catppuccin
 - npm (for asar installation)
 - swaybg (wallpaper manager)
 - iwd (WiFi daemon for iwgtk)
+- bluez (Bluetooth daemon)
+- bluez-utils (Bluetooth utilities)
 - blueman (Bluetooth management)
 - pavucontrol (audio control)
 - playerctl (media control)
@@ -174,7 +176,8 @@ niri-dotfiles/
 │   ├── zen-browser/         # Zen Browser Catppuccin theme
 │   └── spicetify/
 ├── scripts/                 # Utility scripts
-│   └── signal-theme.sh
+│   ├── signal-theme.sh
+│   └── set-wallpaper.sh     # swaybg wallpaper manager
 ├── wallpapers/              # Wallpaper collection
 │   ├── celeste.png          # Desktop wallpaper
 │   ├── firewatch.jpg        # Login screen background
