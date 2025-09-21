@@ -30,8 +30,8 @@ A complete dotfiles configuration for a niri-based Wayland setup with Catppuccin
 
 1. Clone this repository:
    ```bash
-   git clone <your-repo-url> ~/.dotfiles
-   cd ~/.dotfiles
+   git clone https://github.com/nintendogamer15/niri-dotfiles
+   cd niri-dotfiles
    ```
 
 2. Run the installation script:
@@ -131,7 +131,7 @@ After running the installation script:
 ## Structure
 
 ```
-~/.dotfiles/
+niri-dotfiles/
 ├── install.sh              # Main installation script
 ├── configs/                 # Configuration files
 │   ├── .bashrc

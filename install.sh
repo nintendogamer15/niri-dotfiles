@@ -5,6 +5,9 @@
 
 set -e
 
+# Store the script directory for later use
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -44,7 +47,7 @@ if ! command -v yay &> /dev/null; then
     git clone https://aur.archlinux.org/yay.git
     cd yay
     makepkg -si --noconfirm
-    cd "$HOME/.dotfiles"
+    cd "$SCRIPT_DIR"
     log_success "yay installed successfully"
 else
     log_info "yay is already installed"
@@ -213,7 +216,7 @@ if [[ ! -d ~/ble.sh ]]; then
     git clone --recursive --depth 1 --shallow-submodules https://github.com/akinomyoga/ble.sh.git ~/ble.sh
     cd ~/ble.sh
     make install PREFIX=~/.local
-    cd ~/.dotfiles
+    cd "$SCRIPT_DIR"
 fi
 
 log_success "ble.sh setup complete"
