@@ -28,13 +28,18 @@ A complete dotfiles configuration for a niri-based Wayland setup with Catppuccin
 
 ## Installation
 
-1. Clone this repository:
+1. Install git (required for cloning):
+   ```bash
+   sudo pacman -S git
+   ```
+
+2. Clone this repository:
    ```bash
    git clone https://github.com/nintendogamer15/niri-dotfiles
    cd niri-dotfiles
    ```
 
-2. Run the installation script:
+3. Run the installation script:
    ```bash
    chmod +x install.sh
    ./install.sh
@@ -79,7 +84,6 @@ A complete dotfiles configuration for a niri-based Wayland setup with Catppuccin
 - alacritty
 - fuzzel
 - mako
-- wlogout
 - btop
 - htop
 - fastfetch
@@ -100,6 +104,7 @@ A complete dotfiles configuration for a niri-based Wayland setup with Catppuccin
 - blesh-git
 - catppuccin-gtk-theme-mocha
 - swaylock-effects-git
+- wlogout
 - zen-browser-bin
 
 ### Optional Packages

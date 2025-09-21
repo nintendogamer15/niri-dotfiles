@@ -64,7 +64,6 @@ PACMAN_PACKAGES=(
     "alacritty"
     "fuzzel"
     "mako"
-    "wlogout"
     "btop"
     "htop"
     "fastfetch"
@@ -89,6 +88,7 @@ AUR_PACKAGES=(
     "blesh-git"
     "catppuccin-gtk-theme-mocha"
     "swaylock-effects-git"
+    "wlogout"
     "zen-browser-bin"
 )
 
