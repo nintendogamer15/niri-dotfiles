@@ -114,6 +114,8 @@ log_info "Installing AUR packages..."
 if pacman -Q swaylock &> /dev/null; then
     log_info "Removing swaylock to avoid conflict with swaylock-effects-git..."
     sudo pacman -R --noconfirm swaylock
+else
+    log_info "swaylock not found, proceeding with AUR package installation"
 fi
 
 for package in "${AUR_PACKAGES[@]}"; do
