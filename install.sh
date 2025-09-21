@@ -279,9 +279,35 @@ if [[ -f configs/lightdm/lightdm-gtk-greeter.conf ]]; then
     # Enable lightdm service
     sudo systemctl enable lightdm
     log_success "LightDM configured and enabled"
-else
-    log_warning "LightDM config not found, skipping LightDM setup"
-fi
+    else
+        log_warning "LightDM config not found, skipping LightDM setup"
+    fi
+    
+    # Set up Zen Browser theming
+    log_info "Setting up Zen Browser Catppuccin theme..."
+    if command -v zen-browser &> /dev/null; then
+        ZEN_PROFILE_DIR=$(find ~/.zen -name "*.Default*" -type d | head -1)
+        if [[ -n "$ZEN_PROFILE_DIR" ]]; then
+            # Copy chrome folder with theme files
+            cp -r configs/zen-browser/chrome "$ZEN_PROFILE_DIR/"
+            
+            # Enable legacy user profile customizations in prefs.js
+            PREFS_FILE="$ZEN_PROFILE_DIR/prefs.js"
+            if [[ -f "$PREFS_FILE" ]]; then
+                # Remove existing setting if present
+                sed -i '/toolkit.legacyUserProfileCustomizations.stylesheets/d' "$PREFS_FILE"
+            fi
+            # Add the setting
+            echo 'user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);' >> "$PREFS_FILE"
+            
+            log_success "Zen Browser Catppuccin theme configured"
+            log_info "Note: Restart Zen Browser to see theme changes"
+        else
+            log_warning "Zen Browser profile directory not found"
+        fi
+    else
+        log_info "Zen Browser not installed, skipping theme setup"
+    fi
 
 # Spicetify theme setup (if installed)
 if command -v spicetify &> /dev/null; then

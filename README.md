@@ -78,7 +78,7 @@ A complete dotfiles configuration for a niri-based Wayland setup with Catppuccin
 - Geany text editor with Catppuccin theme
 - Spotify with Spicetify and Catppuccin theme
 - Steam (with version selection)
-- Zen Browser
+- Zen Browser with Catppuccin Mocha (Lavender) theme
 - Signal Desktop
 
 ## Package List
@@ -135,12 +135,16 @@ After running the installation script:
 
 1. **Restart your session** or reload configurations
 2. **Signal theming**: If you installed Signal, run `~/signal-theme.sh` to apply Catppuccin theme
-3. **Spotify theming**: If you installed Spotify:
+3. **Zen Browser theming**: If you installed Zen Browser, the theme is automatically configured
+   - The script enables `toolkit.legacyUserProfileCustomizations.stylesheets` preference
+   - Catppuccin Mocha (Lavender) theme files are copied to your profile
+   - Restart Zen Browser to see the changes
+4. **Spotify theming**: If you installed Spotify:
    - Open Spotify and log in
    - Run: `spicetify backup apply`
    - Run: `spicetify config current_theme catppuccin-mocha`
    - Run: `spicetify apply`
-4. **Verify configurations**: All applications should now use Catppuccin Mocha theme
+5. **Verify configurations**: All applications should now use Catppuccin Mocha theme
 
 ## Structure
 
@@ -166,6 +170,7 @@ niri-dotfiles/
 │   ├── gtk-4.0/
 │   ├── niriswitcher/        # Window switcher configuration
 │   ├── lightdm/             # Login manager configuration
+│   ├── zen-browser/         # Zen Browser Catppuccin theme
 │   └── spicetify/
 ├── scripts/                 # Utility scripts
 │   └── signal-theme.sh
