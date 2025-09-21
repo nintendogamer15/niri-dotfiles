@@ -105,6 +105,13 @@ done
 
 # Install AUR packages
 log_info "Installing AUR packages..."
+
+# Handle swaylock conflict first
+if pacman -Q swaylock &> /dev/null; then
+    log_info "Removing swaylock to avoid conflict with swaylock-effects-git..."
+    sudo pacman -R --noconfirm swaylock
+fi
+
 for package in "${AUR_PACKAGES[@]}"; do
     if yay -Q "$package" &> /dev/null; then
         log_info "$package is already installed"
