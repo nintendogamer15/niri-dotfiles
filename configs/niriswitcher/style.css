@@ -1,0 +1,42 @@
+/* Catppuccin Mocha theme for niriswitcher */
+
+:root {
+  --bg-color: rgba(30, 30, 46, 0.95);           /* Base */
+  --label-color: rgb(205, 214, 244);            /* Text */
+  --alternate-label-color: rgb(166, 173, 200);  /* Subtext1 */
+  --dim-label-color: rgb(127, 132, 156);        /* Overlay2 */
+  --border-color: rgba(116, 199, 236, 0.95);    /* Sapphire */
+  --highlight-color: rgba(137, 180, 250, 0.95); /* Blue */
+  --urgency-color: rgb(243, 139, 168);          /* Pink */
+  --indicator-focus-color: rgba(137, 180, 250, 0.95); /* Blue */
+  --indicator-color: rgba(88, 91, 112, 0.95);   /* Surface2 */
+}
+
+/* Font settings */
+* {
+  font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", monospace;
+}
+
+#niriswitcher {
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+}
+
+.application.selected {
+  background-color: var(--highlight-color);
+  border-radius: 8px;
+}
+
+.application.selected .application-name {
+  color: rgb(30, 30, 46); /* Base for contrast on blue background */
+}
+
+.workspace.selected {
+  background-color: rgba(137, 180, 250, 0.2); /* Semi-transparent blue */
+  border-radius: 8px;
+}
+
+.workspace-indicator.selected {
+  background-color: var(--indicator-focus-color);
+}

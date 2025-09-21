@@ -72,10 +72,13 @@ PACMAN_PACKAGES=(
     "base-devel"
     "npm"
     "swaybg"
+    "iwd"
     "blueman"
     "pavucontrol"
     "playerctl"
     "mpd"
+    "lightdm"
+    "lightdm-gtk-greeter"
     "ttf-jetbrains-mono"
     "ttf-nerd-fonts-symbols"
     "ttf-nerd-fonts-symbols-common"
@@ -87,6 +90,7 @@ AUR_PACKAGES=(
     "blesh-git"
     "catppuccin-gtk-theme-mocha"
     "iwgtk"
+    "niriswitcher"
     "swaylock-effects-git"
     "wlogout"
     "zen-browser-bin"
@@ -231,6 +235,53 @@ log_success "ble.sh setup complete"
 # Install asar for Signal theming
 log_info "Installing asar for Signal Desktop theming..."
 sudo npm install -g @electron/asar
+
+# Enable and configure iwd service for iwgtk
+log_info "Configuring iwd service for iwgtk..."
+sudo systemctl enable iwd
+sudo systemctl start iwd
+
+# Create iwd configuration directory and basic config
+sudo mkdir -p /etc/iwd
+sudo tee /etc/iwd/main.conf > /dev/null <<EOF
+[General]
+EnableNetworkConfiguration=true
+
+[Network]
+NameResolvingService=systemd
+EOF
+
+log_success "iwd service configured and enabled"
+
+# Set up wallpaper with swaybg
+log_info "Setting up wallpaper..."
+if [[ -f ~/Pictures/Wallpapers/celeste.png ]]; then
+    # Add wallpaper to niri startup
+    if [[ -f ~/.config/niri/config.kdl ]]; then
+        # Add wallpaper spawn command to niri config if not already present
+        if ! grep -q "swaybg" ~/.config/niri/config.kdl; then
+            sed -i '/spawn-at-startup "waybar"/a spawn-at-startup "swaybg -m fill -i ~/Pictures/Wallpapers/celeste.png"' ~/.config/niri/config.kdl
+        fi
+    fi
+    log_success "Wallpaper setup complete"
+else
+    log_warning "Wallpaper file not found, skipping wallpaper setup"
+fi
+
+# Set up LightDM configuration
+log_info "Configuring LightDM login manager..."
+if [[ -f configs/lightdm/lightdm-gtk-greeter.conf ]]; then
+    sudo cp configs/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
+    # Copy wallpapers to system location
+    sudo mkdir -p /usr/share/lightdm
+    sudo cp wallpapers/firewatch.jpg /usr/share/lightdm/
+    sudo cp wallpapers/042a5f1cab2d1ccf90e879dc5592576a.jpg /usr/share/lightdm/
+    # Enable lightdm service
+    sudo systemctl enable lightdm
+    log_success "LightDM configured and enabled"
+else
+    log_warning "LightDM config not found, skipping LightDM setup"
+fi
 
 # Spicetify theme setup (if installed)
 if command -v spicetify &> /dev/null; then

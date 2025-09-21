@@ -16,6 +16,9 @@ A complete dotfiles configuration for a niri-based Wayland setup with Catppuccin
 - **System Monitor**: btop, htop
 - **System Info**: fastfetch
 - **Text Editor**: Geany with Catppuccin theme
+- **Window Switcher**: niriswitcher with Catppuccin theme
+- **Login Manager**: LightDM with GTK greeter
+- **Wallpaper Manager**: swaybg
 - **Theme**: Catppuccin Mocha throughout
 - **Additional Apps**: Signal, Steam, Zen Browser, Spotify with Spicetify
 
@@ -63,6 +66,8 @@ A complete dotfiles configuration for a niri-based Wayland setup with Catppuccin
 - Mako notification configuration
 - swaylock configuration
 - wlogout configuration
+- niriswitcher configuration with Catppuccin theme
+- LightDM login manager configuration
 
 ### Theming
 - Catppuccin Mocha GTK theme
@@ -92,10 +97,13 @@ A complete dotfiles configuration for a niri-based Wayland setup with Catppuccin
 - base-devel
 - npm (for asar installation)
 - swaybg (wallpaper manager)
+- iwd (WiFi daemon for iwgtk)
 - blueman (Bluetooth management)
 - pavucontrol (audio control)
 - playerctl (media control)
 - mpd (music player daemon)
+- lightdm (login manager)
+- lightdm-gtk-greeter (GTK greeter for LightDM)
 - ttf-jetbrains-mono (terminal and system font)
 - ttf-nerd-fonts-symbols* (waybar icons)
 
@@ -103,6 +111,7 @@ A complete dotfiles configuration for a niri-based Wayland setup with Catppuccin
 - blesh-git
 - catppuccin-gtk-theme-mocha
 - iwgtk (WiFi management)
+- niriswitcher (window/workspace switcher for niri)
 - swaylock-effects-git
 - wlogout
 - zen-browser-bin
@@ -155,11 +164,15 @@ niri-dotfiles/
 │   ├── gtk-2.0/
 │   ├── gtk-3.0/
 │   ├── gtk-4.0/
+│   ├── niriswitcher/        # Window switcher configuration
+│   ├── lightdm/             # Login manager configuration
 │   └── spicetify/
 ├── scripts/                 # Utility scripts
 │   └── signal-theme.sh
 ├── wallpapers/              # Wallpaper collection
-│   └── celeste.png
+│   ├── celeste.png          # Desktop wallpaper
+│   ├── firewatch.jpg        # Login screen background
+│   └── *.jpg                # Profile pictures
 ├── .gitignore
 └── README.md
 ```
